@@ -8,7 +8,7 @@ module.exports = {
 
     run: async (sock, m, { prefix, isPremium, isOwner }) => {
         try {
-            await sock.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
+            await sock.sendMessage(m.chat, { react: { text: '😹', key: m.key } });
 
             const pushname = m.pushName || "No Name";
             const wib = moment.tz('Asia/Jakarta').format('HH:mm:ss');
