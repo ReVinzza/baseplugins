@@ -1,4 +1,4 @@
-const fs = require("fs")
+ const fs = require("fs")
 const path = require("path")
 
 module.exports = {
@@ -9,24 +9,17 @@ module.exports = {
  if (!text) return m.reply("contoh:\ngetplugin ping.js")
 
  try {
-
  let filename = text.trim()
-
  if (!filename.endsWith(".js")) {
  filename += ".js"
  }
 
  const filePath = path.join(__dirname, filename)
-
  if (!fs.existsSync(filePath)) {
  return m.reply("plugin tidak ditemukan ❌")
  }
-
  const fileContent = fs.readFileSync(filePath, "utf8")
-
- // kalau terlalu panjang, kirim sebagai file
  if (fileContent.length > 5000) {
-
  return sock.sendMessage(m.chat, {
  document: Buffer.from(fileContent, "utf8"),
  fileName: filename,
