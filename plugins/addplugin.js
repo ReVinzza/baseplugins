@@ -1,4 +1,4 @@
-const fs = require("fs")
+  const fs = require("fs")
 const path = require("path")
 
 module.exports = {
@@ -14,31 +14,20 @@ module.exports = {
             if (!filename || !codeArr.length) {
                 return m.reply("format salah!\ncontoh:\naddplugin test.js | module.exports = {}")
             }
-
             filename = filename.trim()
             const code = codeArr.join("|").trim()
-
-            // paksa ekstensi js
             if (!filename.endsWith(".js")) {
                 filename += ".js"
             }
-
-            // folder plugins utama (INI YANG PENTING)
             const pluginDir = path.join(__dirname)
-
             const filePath = path.join(pluginDir, filename)
-
-            // cek kalau file sudah ada
             if (fs.existsSync(filePath)) {
                 return m.reply("plugin sudah ada ❌")
             }
-
             fs.writeFileSync(filePath, code)
-
             m.reply(
                 `Plugin berhasil dibuat ✅\n\nFile: ${filename}\n\nBot akan auto-load (kalau fs.watch aktif)`
             )
-
         } catch (err) {
             console.error(err)
             m.reply("gagal bikin plugin ❌")
